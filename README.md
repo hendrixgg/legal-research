@@ -5,7 +5,7 @@ The goal here is to have an automated research function take information about a
 
 This describes the data required to test a single legal case for the legal research question of "what laws apply to the facts?".
 
-### Input-Output for AI function testing
+### Input-Output for research function testing
 
 input:
 - case material facts: markdown text string
