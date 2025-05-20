@@ -1,6 +1,8 @@
 # legal-research
 The goal here is to have an automated research function take information about a legal situation as input, ask follow up questions to obtain additional information, identify the applicable laws, identify potential outcomes for the case, and provide potential next steps for the client and/or legal representative.
 
+![](./legal-reasearch-interaction-diagram.png)
+
 ## Test Case
 
 This describes the data required to test a single legal case for the legal research question of "what laws apply to the facts?".
