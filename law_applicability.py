@@ -86,32 +86,30 @@ def basic_test():
 
 async def batch_test():
     llm_tasks = []
+    question_text = question_texts[1]
     for law_information in law_informations:
-        for question_text in question_texts:
-            messages = [
-                SystemMessage(content="You are a helpful assistant."),
-                HumanMessage(content=prompt.format(case_text=case_text,
-                                                   law_information=law_information,
-                                                   question_text=question_text))
-            ]
+        messages = [
+            SystemMessage(content="You are a helpful assistant."),
+            HumanMessage(content=prompt.format(case_text=case_text,
+                                               law_information=law_information,
+                                               question_text=question_text))
+        ]
 
-            # queue up the coroutines for relevant law information
-            llm_tasks.append(asyncio.create_task(llm.ainvoke(messages)))
+        # queue up the coroutines for relevant law information
+        llm_tasks.append(asyncio.create_task(llm.ainvoke(messages)))
 
     for law_information in irrelevant_law_informations:
-        for question_text in question_texts:
-            messages = [
-                SystemMessage(content="You are a helpful assistant."),
-                HumanMessage(content=prompt.format(case_text=case_text,
-                                                   law_information=law_information,
-                                                   question_text=question_text))
-            ]
+        messages = [
+            SystemMessage(content="You are a helpful assistant."),
+            HumanMessage(content=prompt.format(case_text=case_text,
+                                               law_information=law_information,
+                                               question_text=question_text))
+        ]
 
-            # queue up the coroutines for irrelevant law information
-            llm_tasks.append(asyncio.create_task(llm.ainvoke(messages)))
+        # queue up the coroutines for irrelevant law information
+        llm_tasks.append(asyncio.create_task(llm.ainvoke(messages)))
     # Await all tasks to complete
-    results = await asyncio.gather(*llm_tasks)
-    for result in results:
+    for result in await asyncio.gather(*llm_tasks):
         print(result.content)
         print("-" * 80)
 
