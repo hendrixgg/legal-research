@@ -1,3 +1,4 @@
+import asyncio
 from langchain.chat_models import init_chat_model
 from langchain_core.prompts import PromptTemplate
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -16,6 +17,11 @@ Law Information: {law_information}
 Question: {question_text}
 """
 
+# Define the prompt template
+prompt = PromptTemplate(
+    input_variables=["case_text", "legal_reference", "question_text"],
+    template=template_text
+)
 law_informations = [
     """
 Excerpt from the case: 1100997 Ontario Ltd. v. North Elgin Centre Inc., 2016 ONCA 848, at para. 19.
@@ -62,19 +68,58 @@ Truthfully answer the question based on the case text and Law Information provid
     """Can the provided legal reference be used to proceed with this case? Please explain your reasoning based on the case text and law information provided. Condlude the answer on a final line with 'Yes' or 'No'."""
 ]
 
-# Define the prompt template
-prompt = PromptTemplate(
-    input_variables=["case_text", "legal_reference", "question_text"],
-    template=template_text
-)
 
-messages = [
-    SystemMessage(content="You are a helpful assistant."),
-    HumanMessage(content=prompt.format(case_text=case_text,
-                                       law_information=irrelevant_law_informations[1],
-                                       question_text=question_texts[1]))
-]
-# Generate a response
-response = llm.invoke(messages)
-# Print the response
-print(response.content)
+def basic_test():
+
+    messages = [
+        SystemMessage(content="You are a helpful assistant."),
+        HumanMessage(content=prompt.format(case_text=case_text,
+                                           law_information=irrelevant_law_informations[1],
+                                           question_text=question_texts[1]))
+    ]
+
+    # Generate a response
+    response = llm.invoke(messages)
+    # Print the response
+    print(response.content)
+
+
+async def batch_test():
+    llm_tasks = []
+    for law_information in law_informations:
+        for question_text in question_texts:
+            messages = [
+                SystemMessage(content="You are a helpful assistant."),
+                HumanMessage(content=prompt.format(case_text=case_text,
+                                                   law_information=law_information,
+                                                   question_text=question_text))
+            ]
+
+            # queue up the coroutines for relevant law information
+            llm_tasks.append(asyncio.create_task(llm.ainvoke(messages)))
+
+    for law_information in irrelevant_law_informations:
+        for question_text in question_texts:
+            messages = [
+                SystemMessage(content="You are a helpful assistant."),
+                HumanMessage(content=prompt.format(case_text=case_text,
+                                                   law_information=law_information,
+                                                   question_text=question_text))
+            ]
+
+            # queue up the coroutines for irrelevant law information
+            llm_tasks.append(asyncio.create_task(llm.ainvoke(messages)))
+    # Await all tasks to complete
+    results = await asyncio.gather(*llm_tasks)
+    for result in results:
+        print(result.content)
+        print("-" * 80)
+
+    # Run all relevant tasks concurrently
+    pass
+
+
+if __name__ == "__main__":
+    # basic_test()
+
+    asyncio.run(batch_test())
