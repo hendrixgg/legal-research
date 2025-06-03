@@ -59,7 +59,8 @@ Excerpt from the case: 671122 Ontario Limited v. Sagaz Industries Canada Inc., 2
 (Emphasis added)
 
 I note that it has been suggested in Ontario as well that a more flexible approach may be warranted on motions to re-open a trial: see Castlerigg Investments Inc. v. Lam (1991), 1991 CanLII 7355 (ON SC), 2 O.R. (3d) 216 at p. 223, 47 C.P.C. (2d) 270 (Gen. Div.); Scott v. Cook, 1970 CanLII 331 (ON SC), [1970] 2 O.R. 769, 12 D.L.R. (3d) 113 (H.C.J.). In Canada, the test for admission of new evidence on appeal includes a similar criterion of credibility: "the evidence must be credible in the sense that it is reasonably capable of belief". (See R. v. Palmer, 1979 CanLII 8 (SCC), [1980] 1 S.C.R. 759 at p. 775, 106 D.L.R. (3d) 212; R. v. Warsing, 1998 CanLII 775 (SCC), [1998] 3 S.C.R. 579 at p. 592, 233 N.R. 319.)
-"""
+""",
+
 ]
 
 question_texts = [

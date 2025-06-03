@@ -164,3 +164,26 @@ Based on the case text provided, the legal reference from 671122 Ontario Limited
 Yes
 --------------------------------------------------------------------------------
 ```
+
+The last example of the batch test
+
+
+## Ways to improve
+0. collect and organize the data
+    0. access to WestLaw and/or CoCounsel legal research tools
+    1. download and chunking (how to chunk for the test cases vs. how to chunk for the case law and statutes references)
+    2. potential future construct working statutes mental model built from case law
+    3. cases here: https://queensuca-my.sharepoint.com/:u:/g/personal/14cfl_queensu_ca/EdiQyKMdvBpCicM9T9xd_MwBOtnPPSv51wrfQX6RKgU1Hg?e=L80WYA
+1. exaustive search of applicable laws
+    1. past cases and statutes
+    2. linear search one-by-one, downside: a lot of stuff, opportunity: use techniques
+    3. vector semantic similarity top k
+        1. do within each court authority
+    4. perhaps build legal statutes from existing cases to prune the search space by a lot
+        1. number of citations
+        2. court authorithy of the case
+    5. court authority 
+        1. holistic view of each level, higher courts do not necessarily always overrule lower courts (lower courts must obey, but higher courts may introduce exceptions)
+    6. testing consideration: cannot use cases that happened in the future
+2. do we need to incorporate statutes? (probably)
+    1. use idea by pasting all necessary term definitions right before the statute so that it can be interpreted
