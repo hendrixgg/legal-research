@@ -11,7 +11,7 @@ This describes the data required to test a single legal case for the legal resea
 
 input:
 - case material facts: markdown text string
-- source bodies of laws in the jurisdiction/context: list of (markdown text string, metadata)
+- source bodies of statutes in the jurisdiction/context: list of (markdown text string, metadata)
 - source bodies of case-law in the jurisdiction/context: list of (markdown text string, metadata)
 - past private legal case info: list of (markdown text string, metadata)
 
@@ -50,7 +50,6 @@ how do we determine when a given law or past case almost apply?
 ### Possible workflow
 
 need to:
-- define using Colang.
 - prioritize (have a prioritized queue of ambiguities/follow-up-questions to ask the client)
 - if the client has little detail to add in their story, quickly transition to summary of what's known and where the gaps are
 - resolve jurisdictional nuances (international vs. federal vs. state vs. local)
@@ -85,3 +84,54 @@ Legal Agent Workflow from intake of a client to providing them with next steps.
     - Include emotional or financial impacts (e.g., “Settling may be faster but could yield a lower payout.”).
     - Ask for their priorities (e.g., “Do you prefer a quick resolution or maximizing compensation?”) to tailor outcome analysis.
 4. Tell the client a summary: what they have said so far, what laws you have identified as applicable to their story, what the options are to address their concerns, what ambiguities/contradictions are currently unresolved about their situation or about the state of the law, immediate next steps to be taken at this point by the law firm, and options for the client to make a decision.
+
+## Test Results
+
+### testing `law_applicability.py`
+```
+(venv) C:\Users\Hendrix\GitHub\legal-research>python test.py
+The legal reference provided from the case 1100997 Ontario Ltd. v. North Elgin Centre Inc., 2016 ONCA 848, at para. 19, defines a cause of action as "a factual situation the existence of which entitles one person to obtain from the court a remedy against another person." This definition can be applied in the current case to determine whether the constructive dismissal and wrongful dismissal claims in the Fresh As Amended Statement of Claim are new or if they seek alternative relief based on the same facts.
+
+In this case, the key issue is whether the claims of constructive dismissal and wrongful dismissal in the Fresh As Amended Statement of Claim are new causes of action or if they are based on the same factual situation as previously alleged in the Notice of Action and Statement of Claim. The legal reference helps in analyzing whether the claims are distinct causes of action or if they are seeking remedies based on the same underlying facts.
+
+Based on the case text provided, it appears that the claims of constructive dismissal and wrongful dismissal in the Fresh As Amended Statement of Claim are not new causes of action but rather seek alternative relief based on the same facts previously alleged. The court found that the allegations in the Fresh As Amended Statement of Claim were contained in the Notice of Action and were never abandoned by the plaintiff. Therefore, applying the legal reference, it can be argued that the claims of constructive dismissal and wrongful dismissal are part of the same factual situation entitling the plaintiff to seek remedies against the defendant.
+
+In conclusion, the legal reference helps in determining that the claims of constructive dismissal and wrongful dismissal in the Fresh As Amended Statement of Claim are not new causes of action but rather alternative relief sought based on the same factual situation previously alleged by the plaintiff.
+
+(venv) C:\Users\Hendrix\GitHub\legal-research>pip install -qU "langchain[openai]"
+
+(venv) C:\Users\Hendrix\GitHub\legal-research>python test.py                                                                                                   
+Based on the case text provided, it appears that the issue at hand involves whether the constructive dismissal and wrongful dismissal claims in the Fresh as Amended Statement of Claim are considered new claims or if they seek alternative relief based on the same facts as previously alleged. The case text outlines the arguments made by both parties regarding the inclusion of these claims in the original Notice of Action and subsequent Statement of Claim.
+
+In determining whether the Fresh as Amended Statement of Claim seeks alternative relief based on the same facts, the legal reference from 1100997 Ontario Ltd. v. North Elgin Centre Inc., 2016 ONCA 848, at para. 19, defines a cause of action as a factual situation that entitles one person to obtain a remedy against another person.
+
+Applying this legal reference to the case text, it appears that the Fresh as Amended Statement of Claim asserts that the constructive dismissal and wrongful dismissal claims are based on the same factual situation as previously alleged in the Notice of Action and Statement of Claim. The argument is that these claims simply urge a different legal conclusion about the nature of the relationship between Mr. Weekes and Investors Group.
+
+Therefore, the legal reference provided can be used to proceed with this case as it supports the analysis of whether the claims in the Fresh as Amended Statement of Claim are new or seek alternative relief based on the same facts.
+
+Conclusion: Yes
+
+(venv) C:\Users\Hendrix\GitHub\legal-research>python test.py
+Based on the case text provided, the legal reference from Timber Estate v. Bank of Nova Scotia can be used to proceed with this case. The case text discusses whether the constructive dismissal and wrongful dismissal claims in the Fresh As Amended Statement of Claim are new or if they seek alternative relief based on the same facts. The legal reference defines a cause of action as a factual situation that entitles one person to obtain a remedy against another. It states that when an amendment relates to material facts not substantially pleaded in the original claim or essential to support the claim being advanced, it raises a new cause of action. In this case, the court analyzed whether the claims in the Fresh As Amended Statement of Claim were new or based on the same facts as previously pleaded. Therefore, the legal reference can be applied to determine if the claims raised in the Fresh As Amended Statement of Claim constitute new causes of action.
+
+Yes
+
+(venv) C:\Users\Hendrix\GitHub\legal-research>python test.py
+The legal reference from 71122 Ontario Limited v. Sagaz Industries Canada Inc. discusses the circumstances in which an appellate court may substitute its own findings in the face of an explicit finding of credibility by the trial judge. In the case text provided, the issue at hand is whether the constructive dismissal and wrongful dismissal claims in the Fresh As Amended Statement of Claim seek alternative relief based on the same facts as previously alleged. The judge in the case text considered whether the claims were new or if they simply urged a different legal conclusion based on the same facts. Given that the judge analyzed the specific circumstances of the case and the nature of the claims, it is not directly related to the issue discussed in the legal reference. Therefore, the legal reference cannot be directly applied to the case text provided.
+
+No
+
+(venv) C:\Users\Hendrix\GitHub\legal-research>python test.py
+python: can't open file 'C:\\Users\\Hendrix\\GitHub\\legal-research\\test.py': [Errno 2] No such file or directory
+
+(venv) C:\Users\Hendrix\GitHub\legal-research>python law_applicability.py
+The legal reference provided in the case of 671122 Ontario Limited v. Sagaz Industries Canada Inc. outlines a test for admission of new evidence on appeal. The test includes factors such as whether the evidence could not have been obtained with reasonable diligence, whether the evidence would have an important influence on the case, and whether the evidence is credible.
+
+In the context of the case text provided, the issue at hand is whether the Fresh As Amended Statement of Claim seeks alternative relief based on the same facts as previously alleged. The test from the legal reference could be relevant in determining whether the new claims in the Fresh As Amended Statement of Claim should be allowed based on the same facts presented earlier.
+
+Considering the facts presented in the case text and the legal reference provided, the test for admission of new evidence on appeal may not directly apply to the specific issue of whether the Fresh As Amended Statement of Claim should be allowed in this case. The legal reference primarily deals with admitting new evidence on appeal, whereas the issue in the case text pertains to the inclusion of new claims in an amended statement of claim.
+
+Therefore, based on the information provided, the legal reference may not be directly applicable to the decision on whether the Fresh As Amended Statement of Claim should be allowed in this case.
+
+No
+```
